@@ -20,7 +20,12 @@ router.get("/search", async (req, res, next) => {
 });
 
 router.get("/departments", async (req, res, next) => {
-
+  try {
+    const data = await departmentsModule.getAll();
+    res.status("200").json(data);
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Export Module
